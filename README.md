@@ -1,9 +1,9 @@
 
 ========================================================================
-=========================== MongoDB Commands ===========================
+ MongoDB Commands
 ========================================================================
 
-# How to easily run multi-line queries using 'VIM'
+### How to easily run multi-line queries using 'VIM'
 
 _type in Mongo shell_
 
@@ -18,12 +18,12 @@ _type ':x' to save and exit VIM editor_
 
 ========================================================================
 
-# Find ALL records
+### Find ALL records
 
     db.collectionName.find({}).pretty()
 
 
-# Filter ALL records based on field value(s)
+### Filter ALL records based on field value(s)
 
     db.collectionName.find({}, {
         fieldName1 : value1,
@@ -31,17 +31,17 @@ _type ':x' to save and exit VIM editor_
     }).pretty()
 
 
-# Find ONE record
+### Find ONE record
 
     db.collectionName.findOne()
 
 
-# Find DISTINCT field values
+### Find DISTINCT field values
 
     db.sampleCollection.distinct("fieldName")
 
 
-# Find DISTINCT nested field values
+### Find DISTINCT nested field values
 
     db.sampleCollection.distinct("fieldName.nestedField")
 
