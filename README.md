@@ -65,6 +65,32 @@ _type ':x' to save and exit VIM editor_
 
 ========================================================================
 
+### Count of documents between TWO dates using ObjectId
+
+    var objIdMin = ObjectId(Math.floor((new Date('2016/1/7'))/1000).toString(16) + "0000000000000000");
+    
+    var objIdMax = ObjectId(Math.floor((new Date('2016/8/25'))/1000).toString(16) + "0000000000000000");
+
+    db.collectionName.aggregate([
+        {
+            $match : {
+                "_id" : {
+                    $gt: objIdMin, 
+                    $lt: objIdMax
+                }
+            }
+        },
+        {
+            $group : {
+                _id : null,
+                count: { $sum: 1 }
+            }
+        }
+    ])
+
+
+========================================================================
+
 ### Find all fields in a collection
 
 _using map-reduce_
@@ -132,6 +158,26 @@ _analogous to SQL GROUP BY_
 
 ========================================================================
 
+### Sort + Group using aggregate
+
+    db.collectionName.aggregate(
+        { 
+            $sort: {
+                "fieldName" : -1
+            } 
+        },
+        { 
+            $group: {
+                fieldName: {
+                    $first: "value"
+                }
+            } 
+        }
+    );
+
+
+========================================================================
+
 ### Join + Filter + Select
 
     db.collectionName1.aggregate([
@@ -182,31 +228,6 @@ _analogous to SQL GROUP BY_
 
 ========================================================================
 
-### Count of documents between TWO dates using ObjectId
-
-    var objIdMin = ObjectId(Math.floor((new Date('2016/1/7'))/1000).toString(16) + "0000000000000000");
-    
-    var objIdMax = ObjectId(Math.floor((new Date('2016/8/25'))/1000).toString(16) + "0000000000000000");
-
-    db.collectionName.aggregate([
-        {
-            $match : {
-                "_id" : {
-                    $gt: objIdMin, 
-                    $lt: objIdMax
-                }
-            }
-        },
-        {
-            $group : {
-                _id : null,
-                count: { $sum: 1 }
-            }
-        }
-    ])
-
-
-========================================================================
 
 
 
